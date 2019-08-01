@@ -14,7 +14,7 @@ from gym_airsim.envs.myAirSimClient import *
 from AirSimClient import *
 
 logger = logging.getLogger(__name__)
-target1_new_position=[1,1,-3]
+target1_new_position=[2,-1,-2]
 
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
@@ -33,7 +33,7 @@ class AirSimEnv(gym.Env):
         airgym = myAirSimClient()
         self.drone1_vehicle_name = "Drone1"
         self.target1_vehicle_name = "Target1"
-        self.target_thershold=2.5
+        self.target_thershold=2.0
 
         self.simage = np.zeros((90, 256,1), dtype=np.uint8)
         self.rgbimage = np.zeros((90, 256,3), dtype=np.uint8)

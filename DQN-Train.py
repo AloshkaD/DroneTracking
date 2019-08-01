@@ -27,7 +27,7 @@ set_session(sess)  # set this TensorFlow session as the default session for Kera
 from callbacks import *
 from rl.agents.dqn import DQNAgent
 from rl.policy import LinearAnnealedPolicy, EpsGreedyQPolicy
-from rl.memory import SequentialMemory
+from rl.memory import SequentialMemory,PrioritizedMemory
 from rl.processors import MultiInputProcessor
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
@@ -110,12 +110,12 @@ model = Model(
 
 train = True
 
-tb = TensorBoard(log_dir='logs')
+tb = TensorBoard(log_dir='logs/Dueling-Double-DQN-PER')
 
 # Finally, we configure and compile our agent. You can use every built-in Keras optimizer and
 # even the metrics!
-memory = SequentialMemory(limit=100000, window_length=1)                        #reduce memmory
-
+#memory = SequentialMemory(limit=100000, window_length=1)                        #reduce memmory
+memory = PrioritizedMemory(limit=100000, alpha=.4,start_beta=.6, end_beta=.6, window_length=1)
 processor = MultiInputProcessor(nb_inputs=5)
 
 # Select a policy. We use eps-greedy action selection, which means that a random action is selected
@@ -128,11 +128,11 @@ policy = LinearAnnealedPolicy(EpsGreedyQPolicy(), attr='eps', value_max=1., valu
 
 dqn = DQNAgent(model=model, processor=processor, nb_actions=nb_actions, memory=memory, nb_steps_warmup=50, 
                enable_double_dqn=True, 
-               enable_dueling_network=False, dueling_type='avg', 
+               enable_dueling_network=True, dueling_type='avg', 
                target_model_update=1e-2, policy=policy, gamma=.99)
 
 dqn.compile(Adam(lr=0.0005), metrics=['mae'])
-load_pre_trained = True
+load_pre_trained = False
 if train:
     # Okay, now it's time to learn something! We visualize the training here for show, but this
     # slows down training quite a lot. You can always safely abort the training prematurely using
@@ -161,7 +161,7 @@ if train:
 
 else:
 
-    dqn.load_weights('dqn_AirSimEnv-v42_weights.h5f'.format(args.env_name))
+    dqn.load_weights('dqn_AirSimEnv-v42_weights_dueling_double.h5f'.format(args.env_name))
     print('Loaded weight V1/V1_weights.h5f ')
     dqn.test(env, nb_episodes=10, visualize=False)
 
