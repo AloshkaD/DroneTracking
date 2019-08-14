@@ -1,1 +1,1 @@
-{"nb_episode_steps": [7], "mean_q": [NaN], "loss": [NaN], "Final_Y": [0.4767759144306183], "duration": [17.4372087], "episode_reward": [-110.53772452125929], "mean_eps": [NaN], "episode": [0], "nb_steps": [7], "Final_X": [-0.4928908944129944], "mean_absolute_error": [NaN]}
+{"Final_Y": [0.49102097749710083], "episode_reward": [-92.33839568091112], "nb_steps": [7], "loss": [NaN], "episode": [0], "nb_episode_steps": [7], "mean_absolute_error": [NaN], "mean_eps": [NaN], "Final_X": [-0.4748989939689636], "mean_q": [NaN], "duration": [14.819628199999999]}

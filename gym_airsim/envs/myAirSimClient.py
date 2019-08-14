@@ -146,9 +146,9 @@ class myAirSimClient(MultirotorClient):
         if (position.z_val > -1):
             return True
         
-    def goal_direction(self, goal, pos, vehicle_name=''):
+    def goal_direction(self, goal, pos):
         
-        pitch, roll, yaw  = self.getPitchRollYaw(vehicle_name)
+        pitch, roll, yaw  = self.getPitchRollYaw(self.drone1_vehicle_name)
         yaw = math.degrees(yaw) 
         
         #pos_angle = math.atan2(goal[1] - pos.y_val, goal[0]- pos.x_val)

@@ -110,12 +110,12 @@ model = Model(
 
 train = True
 
-tb = TensorBoard(log_dir='logs/Dueling-Double-DQN-PER')
+tb = TensorBoard(log_dir='logs/Dueling-Double-DQN-cascade')
 
 # Finally, we configure and compile our agent. You can use every built-in Keras optimizer and
 # even the metrics!
-#memory = SequentialMemory(limit=100000, window_length=1)                        #reduce memmory
-memory = PrioritizedMemory(limit=100000, alpha=.4,start_beta=.6, end_beta=.6, window_length=1)
+memory = SequentialMemory(limit=100000, window_length=1)                        #reduce memmory
+#memory = PrioritizedMemory(limit=100000, alpha=.4,start_beta=.6, end_beta=.6, window_length=1)
 processor = MultiInputProcessor(nb_inputs=5)
 
 # Select a policy. We use eps-greedy action selection, which means that a random action is selected
