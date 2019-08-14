@@ -14,7 +14,7 @@ from gym_airsim.envs.myAirSimClient import *
 from AirSimClient import *
 
 logger = logging.getLogger(__name__)
-target1_new_position=[2,-1,-2]
+target1_new_position=[7,-14,-4]
 
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
