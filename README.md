@@ -1,6 +1,6 @@
 # Deep Reinforcement Learning Drone
 
-This is my implementation of the https://github.com/guillem74/DRLDBackEnd repo. in order to compare it with my proposed approach. I upgraded the libraries to work with the new airsim api and openai baseline
+#This repo is under development and the full version will be released around November 2019.
 
 This repository integrates AirSim with openAI gym and keras-rl for autonomous vehicles through deep reinforcement learning. AirSim allows you to easly create your own environment in Unreal Editor and keras-rl let gives your the RL tools to solve the task.
 
@@ -75,4 +75,37 @@ _policy_registry = {
     }
 }
 ```
+
+#Runnng the simulation with Keras-rl
+
+Install keras-rl from https://github.com/keras-rl/keras-rl
+
+The Prioritized Experience Replay isn't available by default by keras-rl. In order to add the PER support, you need to replace the following files in the installed keras-rl folder 
+
+polocy.py
+memory.py
+utils.py
+
+Special thanks to @jakegrigsby for his help with the PER. I've included the files with PER in keras-rl folder. 
+
+Another modification is required to add multiobservation support to keras-rl. In dqn.py, the method below needs to be edited in the following mannaer
+
+```import numpy as np
+    def process_state_batch(self, batch):
+        batch_samples = []
+        batch = np.array(batch)
  
+        if self.processor is None:
+            return batch
+        batch=self.processor.process_state_batch(batch)
+        for i in batch:
+            #print('before',i.shape) 
+            i=np.squeeze(i,axis=1)
+            
+            batch_samples.append(np.array(i))
+            #print('after',i.shape)
+        batch =  batch_samples 
+        return batch```
+
+dqn.py is also included in keras-rl folder for convenience. 
+
