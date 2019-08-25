@@ -101,20 +101,20 @@ class AirSimEnv(gym.Env):
         #r = r - (distance_now**0.4)#(distance_before - distance_now)# - abs(heading_to_target/10)
              
         if  self.cascade_1 >= distance_now >= self.cascade_2:
-            r = 1 
+            r = -2 
             dist_reward=r - (distance_now**0.4)
             heading_reward=1/abs(max(heading,0.1))**0.4
             r=dist_reward+heading_reward
              
         elif self.cascade_2 >= distance_now:
-            r = 1 
+            r = -2 
             z_difference=abs(abs(self.goal.z_val)-abs(current_position.z_val))
             z_reward=1/max(z_difference,0.1)**0.4
             dist_reward=r - (distance_now**0.4)
             heading_reward=1/abs(max(heading,0.1))**0.4
             r=z_reward+dist_reward+heading_reward
         else:
-            r = 1
+            r = -2
             r = r - (distance_now**0.4)
         return r, distance_now
     def step(self, action):
