@@ -27,13 +27,13 @@ set_session(sess)  # set this TensorFlow session as the default session for Kera
 from callbacks import *
 from rl.agents.dqn import DQNAgent
 from rl.policy import LinearAnnealedPolicy, EpsGreedyQPolicy
-from rl.memory import SequentialMemory,PrioritizedMemory
+from rl.memory import SequentialMemory#,PrioritizedMemory
 from rl.processors import MultiInputProcessor
 import os
 os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--mode', choices=['train', 'test'], default='train')
+parser.add_argument('--mode', choices=['train', 'test'], default='test')
 parser.add_argument('--env-name', type=str, default='AirSimEnv-v42')
 parser.add_argument('--weights', type=str, default=None)
 args = parser.parse_args()
@@ -108,7 +108,7 @@ model = Model(
         )
 
 
-train = True
+train = False
 
 tb = TensorBoard(log_dir='logs/Dueling-Double-DQN-cascade')
 

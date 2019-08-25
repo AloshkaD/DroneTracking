@@ -14,7 +14,7 @@ from gym_airsim.envs.myAirSimClient import *
 from AirSimClient import *
 
 logger = logging.getLogger(__name__)
-target1_new_position=[2,-1,-2]
+target1_new_position=[7,-2,-4]
 
 class dotdict(dict):
     """dot.notation access to dictionary attributes"""
@@ -132,7 +132,7 @@ class AirSimEnv(gym.Env):
          
         current_position = airgym.simGetGroundTruthKinematics(self.drone1_vehicle_name).position
         heading = airgym.goal_direction(self.goal, current_position) 
-        print('heading',heading)
+        
         if collided == True:
             done = True
             if re.match(r'Target\d',collided_with):
