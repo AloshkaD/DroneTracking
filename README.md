@@ -1,6 +1,5 @@
 # Deep Reinforcement Learning Drone
 
-#This repo is under development and the full version will be released around November 2019.
 
 This repository integrates AirSim with openAI gym and keras-rl for autonomous vehicles through deep reinforcement learning. AirSim allows you to easly create your own environment in Unreal Editor and keras-rl let gives your the RL tools to solve the task.
 
