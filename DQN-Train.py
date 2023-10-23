@@ -1,13 +1,35 @@
 # -*- coding: utf-8 -*-
+"""
+This code implements a deep reinforcement learning (DRL) agent using the Keras-RL library to interact with an OpenAI Gym environment, specifically "AirSimEnv-v42." The agent uses a Dueling Double Deep Q-Network (Dueling-DDQN) architecture.
 
+Here's a breakdown of what this code does:
+
+It imports necessary libraries and sets up TensorFlow and Keras-RL environment.
+
+Command-line arguments are parsed to determine whether the script should be in "train" or "test" mode and specify the environment name.
+
+The Gym environment is created based on the specified environment name.
+
+A deep neural network model is defined using Keras. It consists of convolutional layers to process images (both depth and RGB images), and dense layers to process additional information such as velocity, distance, and geofence data.
+
+The DQN agent is configured with the model, memory, and various settings. It's configured for training or testing based on the "train" flag.
+
+If in training mode, the agent is trained using the fit method, and checkpoints and logs are saved during training.
+
+If in testing mode, the agent's pre-trained weights are loaded, and it runs in the environment to evaluate its performance.
+
+Pre-trained weights and memory are saved or loaded as needed.
+
+The code uses TensorBoard for logging.
+
+This script is a reinforcement learning agent that learns to interact with an AirSim environment using deep Q-networks (DQN) with various enhancements such as double DQN and dueling network. The agent is trained to take actions based on observations from the environment and optimize its policy to maximize the expected cumulative reward. During testing, it assesses its performance by running in the environment and may visualize the results.
+
+"""
 import numpy as np
 import gym
-
 import gym_airsim.envs
 import gym_airsim
-
 import argparse
-
 from keras.models import Model, Sequential
 from keras.layers import Input, Reshape, Dense, Flatten, Conv2D, concatenate
 from keras.optimizers import Adam

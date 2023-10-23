@@ -5,9 +5,8 @@ import timeit
 import json
 import os
 from tempfile import mkdtemp
-
 import numpy as np
-
+#Keras calback, add weights and biases in the future
 from keras.callbacks import Callback as KerasCallback, CallbackList as KerasCallbackList
 from keras.utils.generic_utils import Progbar
 

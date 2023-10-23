@@ -1,5 +1,4 @@
-from __future__ import print_function
- 
+from __future__ import print_function 
 import msgpackrpc #install as admin: pip install msgpack-rpc-python
 import numpy as np #pip install numpy
 import msgpack
@@ -202,7 +201,6 @@ class Pose(MsgpackMixin):
     @staticmethod
     def nanPose():
         return Pose(Vector3r.nanVector3r(), Quaternionr.nanQuaternionr())
-
 
 class CollisionInfo(MsgpackMixin):
     has_collided = False
